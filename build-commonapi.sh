@@ -129,7 +129,15 @@ install_prerequisites() {
 }
 
 apply_patch() {
-   patch -p1 <"$1" || fail "patch application failed -- see above"
+  # Use forward to avoid questions if patch had been applied already (second run)
+  # Answer proposed by Tom Hale, reference:
+  # https://stackoverflow.com/questions/21928344/how-to-not-break-the-makefile-if-patch-skips-the-patch
+  if patch --dry-run --reverse --force < "$1" >/dev/null 2>&1; then
+    echo "Patch already applied - skipping."
+  else # patch not yet applied
+    echo "Patching..."
+    patch -Ns < "$1" || echo "Patch failed" >&2 && return 1
+  fi
 }
 
 install_prerequisites
