@@ -130,6 +130,7 @@ cd capicxx-core-runtime/ || fail
 git checkout $CORE_RUNTIME_VERSION || fail "capicxx-core: Failed git checkout of $CORE_RUNTIME_VERSION"
 mkdir -p build
 cd build/ || fail
+export CXX=g++
 try cmake ..
 try make -j4
 check_expected libCommonAPI.so
