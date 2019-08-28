@@ -26,7 +26,7 @@ SOMEIP_TOOLS_VERSION=3.1.12.1
 CORE_RUNTIME_VERSION=3.1.12.4
 DBUS_RUNTIME_VERSION=3.1.12.7
 SOMEIP_RUNTIME_VERSION=3.1.12.12
-VSOMEIP_VERSION=2.10.21
+VSOMEIP_VERSION=2.14.16
 
 ARCH=$(uname -m)
 
@@ -195,7 +195,6 @@ VSOMEIP_INSTALL=`realpath $PWD/install`
 git_clone https://github.com/GENIVI/vsomeip.git
 cd vsomeip
 git checkout $VSOMEIP_VERSION || fail "vsomeip: Failed git checkout of $VSOMEIP_VERSION"
-apply_patch ../patch/0001-Fix-gcc8-build-error.patch
 mkdir -p build
 cd build || fail
 try cmake -DBOOST_ROOT=${BOOST_ROOT} -DENABLE_SIGNAL_HANDLING=1 ..
