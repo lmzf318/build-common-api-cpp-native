@@ -20,6 +20,8 @@
 # SETTINGS
 
 VSOMEIP_VERSION=2.14.16
+BOOST_DL_DIR_VERSION=1.64.0
+BOOST_TAR_VERSION=1_64_0
 
 ARCH=$(uname -m)
 
@@ -137,9 +139,10 @@ install_prerequisites
 
 # Build Boost
 cd "$BASEDIR" || fail
-try wget -c https://dl.bintray.com/boostorg/release/1.64.0/source/boost_1_64_0.tar.gz
-try tar -xzf boost_1_64_0.tar.gz
-cd boost_1_64_0/
+try wget -c https://dl.bintray.com/boostorg/release/${BOOST_DL_DIR_VERSION}/source/boost_${BOOST_TAR_VERSION}.tar.gz
+try tar -xzf boost_${BOOST_TAR_VERSION}.tar.gz
+# OK, so it's now under boost_ and the version in the same way it is written in the *TAR* file
+cd boost_${BOOST_TAR_VERSION} || fail "Expected boost to be in $BOOST_TAR_VERSION/ after unpacking!"
 try ./bootstrap.sh
 BOOST_ROOT=`realpath $PWD/../install`
 mkdir -p $BOOST_ROOT
