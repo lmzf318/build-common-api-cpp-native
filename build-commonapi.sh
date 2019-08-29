@@ -159,3 +159,10 @@ cd build || fail
 try cmake -DCMAKE_INSTALL_PREFIX="$VSOMEIP_INSTALL" -DBOOST_ROOT=${BOOST_ROOT} -DENABLE_SIGNAL_HANDLING=1 ..
 try make -j$(nproc)
 try make install
+
+
+cd "$BASEDIR" || fail
+echo "Checking a few results (were libraries compiled and installed?)"
+test -f install/lib/libboost_log.so|| fail "Could not find libboost_log.so in install/lib?  Something probably went wrong"
+test -f install/lib/libvsomeip.so  || fail "Could not find libvsomeip.so in install/lib?  Something probably went wrong"
+
