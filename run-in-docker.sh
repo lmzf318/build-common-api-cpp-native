@@ -15,7 +15,7 @@ echo This will run the script in a controlled docker container environment
 # should be avoided.
 set -x
 docker run $rmflag -i $DISTRO \
-  bash -c "apt-get update ; apt-get install -y git $JAVA_PACKAGE ; git clone $PROJ_URL -b $BRANCH; cd build-common-api-cpp-native ; ./build-commonapi.sh"
+  bash -c "apt-get update ; apt-get install -y git $JAVA_PACKAGE ; git clone $PROJ_URL -b $BRANCH; cd build-common-api-cpp-native ; ./build-commonapi.sh ; echo SLEEPING... ; sleep 1000000"
 
 echo "---"
 echo "Container has now exited.  To look at the results, find it among docker ps (not running), start it and then exec a shell in the container."
