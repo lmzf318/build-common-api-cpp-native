@@ -6,7 +6,7 @@ rmflag=
 
 PROJ_URL="https://github.com/gunnarx/build-common-api-cpp-native"
 BRANCH="vsomeip_2.14.16"
-DISTRO=ubuntu:16.04  # This has java version 8 by default
+DISTRO=ubuntu:19.04  # This has java version 8 by default
 JAVA_PACKAGE=openjdk-8-jre
 
 echo This will run the script in a controlled docker container environment
